@@ -1,26 +1,13 @@
-const { Router } = require("express")
-const { validateEvent, validateEventId } = require("../middleware/ValidateEvent");
+const { Router } = require("express");
+const EventoController = require("../controller/eventoController");
 
 const router = Router();
 
-router.post("/", validateEvent, (req, res) => {
-    eventController.create(req, res);
-})
-
-router.get("/", validateEvent, (req, res) => {
-    eventController.getAll(req, res);
-})
-
-router.get("/:id", validateEventId, (req, res) => {
-    eventController.getOne(req, res);
-})
-
-router.put("/:id", validateEvent, validateEventId, (req, res) => {
-    eventController.update(req, res);
-})
-
-router.delete("/:id", validateEventId, (req, res) => {
-    eventController.delete(req, res);
-})
+// Rotas para Eventos
+router.get("/", EventoController.getAll);
+router.post("/", EventoController.create);
+router.get("/:id", EventoController.getOne);
+router.put("/:id", EventoController.update);
+router.delete("/:id", EventoController.delete);
 
 module.exports = router;

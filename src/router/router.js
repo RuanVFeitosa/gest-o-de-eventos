@@ -1,13 +1,11 @@
 const { Router } = require("express");
-const userRoutes = require ("./routerUser");
-const eventsRoutes = require ("./routerEvent")
+const participanteRoutes = require("./routerParticipante");
+const eventoRoutes = require("./routerEvent");
 
-const UserController = require ("../controller/participantController");
-const EventController = require ("../controller/eventController");
 const router = Router();
 
-router.use("/part", userRoutes);
-router.use("/eventos", eventsRoutes);
+// Usar rotas específicas
+router.use("/participantes", participanteRoutes);
+router.use("/eventos", eventoRoutes);
 
-
-module.exports = router
+module.exports = router;

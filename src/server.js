@@ -2,7 +2,7 @@ require('dotenv').config();
 
 const express = require("express");
 const app = express();
-const routerUser = require ("./router/routerUser");
+const routerParticipante = require ("./router/routerParticipante");
 const routerEvent = require ("./router/routerEvent");
 const sequelize = require("./config/config");
 const router = require ("./router/router");
