@@ -39,9 +39,7 @@ const EventController = {
     getOne: async (req, res) => {
         try {
             const { id } = req.params;
-            const evento = await Evento.findByPk(id, {
-                include: [{ model: Participante, as: 'participantes' }]
-            });
+            const evento = await Evento.findByPk(id);
             if (!evento) {
                 return res.status(404).json({
                     msg: "Evento não encontrado",
@@ -112,6 +110,29 @@ const EventController = {
             });
         }
     },
+    getParticipantes : async(req,res) => {
+        try {
+            const {id} = req.params;
+
+            const participantes = await Participante.findAll({
+                where: {
+                    EventoId : id
+                }
+            })
+            if (!participantes) {
+                return res.status(400).json({
+                    msg: "Não há participantes para esse evento",
+                })
+                
+            }
+            return res.status(200).json(participantes);
+        } catch (error) {
+            console.error(error);
+            return res.status(500).json({
+                msg: "Erro ao deletar evento, acione o suporte",
+            });
+        }
+    }
 };
 
 module.exports = EventController;

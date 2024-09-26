@@ -5,6 +5,7 @@ const Evento = require("./evento")
 const Participante = sequelize.define("participante", {
     EventoId: {
         type: DataTypes.INTEGER,
+        onDelete: 'CASCADE',
         references: {
             model: Evento,
             key: 'id'
